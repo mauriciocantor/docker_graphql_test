@@ -26,7 +26,10 @@ jobs:
         echo "Iniciando login"
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
         echo "Finalizando login"
-      
+    
+    - name: Build docker image
+      run: |
+        docker build --tag maocantor/docker-graphql:0.0.2 .
 
 
 
