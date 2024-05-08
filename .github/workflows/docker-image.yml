@@ -33,19 +33,18 @@ jobs:
       run: |
         echo "Iniciando login"
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-        echo "New version: $NEW_VERSION *****"
         echo "Finalizando login"
     
     - name: Build docker image
       env: 
-        NEW_VERSION: ${{ steps.version.aotputs.version }}
+        NEW_VERSION: ${{ steps.version.outputs.version }}
       run: |
         docker build --tag maocantor/docker-graphql:$NEW_VERSION .
         docker build --tag maocantor/docker-graphql .
     
     - name: Push docker image
       env: 
-        NEW_VERSION: ${{ steps.version.aotputs.version }}
+        NEW_VERSION: ${{ steps.version.outputs.version }}
       run: |
         docker push maocantor/docker-graphql:$NEW_VERSION
         docker push maocantor/docker-graphql
