@@ -30,10 +30,12 @@ jobs:
     - name: Build docker image
       run: |
         docker build --tag maocantor/docker-graphql:0.0.2 .
+        docker build --tag maocantor/docker-graphql .
     
     - name: Push docker image
       run: |
         docker push maocantor/docker-graphql:0.0.2
+        docker push maocantor/docker-graphql
 
 
 
